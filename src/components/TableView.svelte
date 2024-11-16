@@ -2,7 +2,6 @@
 	import {
 		Badge,
 		Button,
-		Dropdown,
 		Modal,
 		Progressbar,
 		Table,
@@ -15,6 +14,8 @@
 	import type { LandingZone } from '../types/landingType';
 	import { LinkOutline } from 'flowbite-svelte-icons';
 
+	let isModalOpen = $state(false);
+	let modalData = $state<LandingZone | null>(null);
 	let { tableData }: { tableData: LandingZone[] } = $props();
 </script>
 
@@ -35,8 +36,12 @@
 				<TableBodyCell>{item.location.name}</TableBodyCell>
 				<TableBodyCell>{item.location.region}</TableBodyCell>
 				<TableBodyCell>
-					<button class="text-xs font-medium bg-gray-100 text-gray-900 px-2 py-1 rounded"
-						>View Details</button
+					<button
+						class="text-xs font-medium bg-gray-100 text-gray-900 px-2 py-1 rounded"
+						onclick={() => {
+							modalData = item;
+							isModalOpen = true;
+						}}>View Details</button
 					>
 				</TableBodyCell>
 				<TableBodyCell>
@@ -69,3 +74,9 @@
 		{/each}
 	</TableBody>
 </Table>
+
+<Modal title={`Details - ${modalData?.full_name}`} bind:open={isModalOpen} autoclose>
+	<p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+		{modalData?.details}
+	</p>
+</Modal>

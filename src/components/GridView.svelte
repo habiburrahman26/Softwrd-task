@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { Badge, Button, Progressbar } from 'flowbite-svelte';
+	import { Badge, Button, Modal, Progressbar } from 'flowbite-svelte';
 	import { LinkOutline } from 'flowbite-svelte-icons';
 	import type { LandingZone } from '../types/landingType';
 
+	let isModalOpen = $state(false);
+	let modalData = $state<LandingZone | null>(null);
 	let { data }: { data: LandingZone[] } = $props();
 </script>
 
@@ -51,7 +53,7 @@
 				</Button>
 			</div>
 
-			<div class="mt-2 text-sm text-gray-500">
+			<div class="my-2 text-sm text-gray-500">
 				<span class="font-medium">Status: </span>
 				<Badge
 					color={item.status === 'active' ? 'green' : item.status === 'retired' ? 'red' : 'blue'}
@@ -59,6 +61,20 @@
 					{item.status}
 				</Badge>
 			</div>
+
+			<button
+				class="text-xs font-medium bg-gray-100 text-gray-900 px-2 py-1.5 rounded w-full"
+				onclick={() => {
+					modalData = item;
+					isModalOpen = true;
+				}}>View Details</button
+			>
 		</div>
 	{/each}
 </div>
+
+<Modal title={`Details - ${modalData?.full_name}`} bind:open={isModalOpen} autoclose>
+	<p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+		{modalData?.details}
+	</p>
+</Modal>
