@@ -51,4 +51,4 @@
 	});
 </script>
 
-<Chart {options} />
+<Chart {options} class="py-6"/>

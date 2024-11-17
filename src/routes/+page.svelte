@@ -11,6 +11,7 @@
 		ListOutline
 	} from 'flowbite-svelte-icons';
 	import DoughnutChart from '../components/DoughnutChart.svelte';
+	import Map from '../components/Map.svelte';
 
 	let dataView = $state<'table' | 'grid'>('table');
 	let data: LandingZone[] = $state([]);
@@ -89,10 +90,11 @@
 			{/if}
 		</div>
 		<div class="col-span-4">
-			<div class="rounded-lg shadow-lg mb-4">
+			<div class="rounded-lg shadow mb-6 overflow-hidden">
 				<h2 class="p-2 font-semibold text-[#111928]">Map View</h2>
+				<Map landingPads={filteredData} />
 			</div>
-			<div class="rounded-lg shadow-lg">
+			<div class="rounded-lg shadow">
 				<h2 class="border-b-2 p-2 font-semibold text-[#111928]">Success Rate Chart</h2>
 				<DoughnutChart chartData={filteredData} />
 			</div>
