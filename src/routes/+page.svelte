@@ -47,7 +47,7 @@
 
 {#if !loading && filteredData.length > 0}
 	<div class="grid grid-cols-12 gap-6 py-8 px-4">
-		<div class="col-span-8">
+		<div class="col-span-12 lg:col-span-8">
 			<div class="flex items-center justify-between pb-4">
 				<ButtonGroup>
 					<Button color="alternative" size="xs" on:click={() => handleView('table')}
@@ -89,12 +89,12 @@
 				<GridView data={filteredData} />
 			{/if}
 		</div>
-		<div class="col-span-4">
-			<div class="rounded-lg shadow mb-6 overflow-hidden">
+		<div class="col-span-12 lg:col-span-4 flex flex-col md:flex-row  xl:flex-col gap-5">
+			<div class="rounded-lg shadow  overflow-hidden basis-1/2">
 				<h2 class="p-2 font-semibold text-[#111928]">Map View</h2>
 				<Map landingPads={filteredData} />
 			</div>
-			<div class="rounded-lg shadow">
+			<div class="rounded-lg shadow basis-1/2">
 				<h2 class="border-b-2 p-2 font-semibold text-[#111928]">Success Rate Chart</h2>
 				<DoughnutChart chartData={filteredData} />
 			</div>

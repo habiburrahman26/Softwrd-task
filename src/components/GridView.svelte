@@ -10,7 +10,7 @@
 
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 	{#each data as item}
-		<div class="bg-white shadow-md rounded-lg p-4">
+		<div class="bg-white shadow rounded-lg p-4">
 			<div class="text-sm text-gray-500">
 				<span class="font-medium">Name: </span>
 				{item.full_name}
